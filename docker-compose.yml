@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+
+  golang-tcp-server:
+    build:
+      context: .  # Ajusta esto al directorio donde tengas el Dockerfile del servidor
+      dockerfile: Dockerfile
+    image: golang-server
+    container_name: golang-tcp-server-container
+    volumes:
+      - .:/app
+    ports:
+      - "8090:8080"  # Mapea el puerto para acceso externo
+    restart: unless-stopped
+    tty: true
