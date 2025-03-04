@@ -1,0 +1,25 @@
+// ====LEVANTAR===
+// terraform apply
+// aws ec2 describe-instances --filters "Name=tag:Name,Values=tcp-server-instance" --query "Reservations[*].Instances[*].InstanceId" --output text
+
+// ====Destruir===
+// aws ecr list-images --repository-name go-ec2-ecr --query 'imageIds[*]' --output json | jq -c '.[]' | while read img; do     aws ecr batch-delete-image --repository-name go-ec2-ecr --image-ids "$img"; done
+// terraform destroy
+
+// ====Clave===
+// terraform output -raw ssh_private_key > my-ec2-key.pem
+// chmod 400 my-ec2-key.pem
+
+// ====SSH===
+// ssh -i my-ec2-key.pem ubuntu@<EC2-IP>
+
+// ====probar==
+// nc -v <EC2-IP> 8090
+
+// ====revisarec2====
+// sudo cat /var/log/cloud-init-output.log
+
+
+// ====deploy====
+// ./deploy.sh
+// source .env && ./deploy.sh

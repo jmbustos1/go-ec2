@@ -11,3 +11,5 @@ terraform.tfvars
 
 my-ec2-key.pem
 terraform.tfstate*
+
+.env
